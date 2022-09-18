@@ -60,3 +60,5 @@ def main(modules, debug):
 
 if __name__ == "__main__":
     main()
+
+# AUTOBIN: get_requirements
