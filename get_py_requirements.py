@@ -10,14 +10,15 @@ import click
 @click.command()
 @click.argument("modules", nargs=-1)
 @click.option("--debug", is_flag=True, default=False)
-def main(modules, debug):
+@click.option("--python", default=None)
+def main(modules, python, debug):
     temp_path = None
     result = None
     try:
         temp_path = tempfile.mkdtemp()
         result = subprocess.check_output(
             [
-                sys.executable,
+                sys.executable if not python else python,
                 "-m",
                 "pip",
                 "download",
@@ -29,6 +30,7 @@ def main(modules, debug):
             ]
         )
         result = (
+
             subprocess.check_output(
                 [
                     "ls",
